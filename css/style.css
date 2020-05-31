@@ -1,0 +1,107 @@
+
+/* https://colorhunt.co/palette/42533 */
+/*    
+    font-family: 'Josefin Sans', sans-serif;
+
+    font-family: 'Kalam', cursive;
+
+    font-family: 'Monoton', cursive; */
+
+/* ----------------HEADER---------------- */
+nav{
+    width: 100%;
+    background-color:#384259 ;
+    font-size: x-large;
+    color: #f73859;
+    font-family: 'Monoton', cursive;
+}
+nav h1 {
+    margin: 0;
+    padding: 20px;
+    text-shadow:2px 2px 2px wheat,0px 0px 5px black;
+    word-spacing: 10px;
+}
+
+
+
+/* ----------------MAIN---------------- */
+main{
+    padding: 20px;
+    margin-top: 0px;
+    text-align: center;
+
+}
+#imgSection{
+    width: 80%;
+    margin: 0 auto;
+}
+.productsImg{
+    width: 30%;
+    height: 300px;
+    border:5px solid #384259;
+    box-shadow:5px 5px 3px  grey;
+    margin: 10px;
+
+}
+.productsImg:hover{
+    border:5px solid #f73859;
+}
+#imgDiv{
+    text-align: center;
+    margin: 70px auto;
+}
+#imgDiv h3{
+    font-size: xx-large;
+    font-family: 'Josefin Sans', sans-serif;
+    color:#384259 ;
+    text-shadow:2px 2px 2px #f73859;
+    border: 8px solid #f73859;
+    width: 250px;
+    padding-top: 5px;
+    margin: 50px auto 70px  auto;
+
+    
+}
+#imgDiv li{
+    list-style: none;
+    display: inline-block;
+    margin-right: 40px;
+    width: 180px;
+    text-align: center;
+    font-family: 'Josefin Sans', sans-serif;
+
+
+
+
+}
+.imgResult{
+    width: 180px;
+    height: 100px;
+    border-radius: 10px;
+    border:5px solid #384259;
+}
+#textSection{
+    font-family: 'Kalam', cursive;
+    margin: 50px auto;
+    width: 70%;
+    
+}
+#textSection p {
+    text-align: justify;
+}
+
+
+
+/* ----------------FOOTER---------------- */
+footer{
+    background-color: #384259;
+    color: #7ac7c4;
+    width: 100%;
+    margin: 0;
+    text-align: center;
+
+}
+footer p {
+    padding: 20px;
+    margin: 0;
+}
