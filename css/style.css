@@ -91,7 +91,10 @@ main{
 }
 
 
-
+#myChartDiv{
+    background-color:whitesmoke ;
+    border: 5px solid black;
+}
 /* ----------------FOOTER---------------- */
 footer{
     background-color: #384259;
