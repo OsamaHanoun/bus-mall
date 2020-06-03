@@ -1,7 +1,6 @@
 'use strict';
 var productNamesArr = ['bag.jpg', 'banana.jpg', 'bathroom.jpg', 'boots.jpg', 'breakfast.jpg', 'bubblegum.jpg', 'chair.jpg', 'cthulhu.jpg', 'dog-duck.jpg', 'dragon.jpg', 'pen.jpg', 'pet-sweep.jpg', 'scissors.jpg', 'shark.jpg', 'sweep.png', 'tauntaun.jpg', 'unicorn.jpg', 'usb.gif', 'water-can.jpg', 'wine-glass.jpg'];
-
-var numOfImages = prompt('Please input the number of images you want to see per round. Max number of images is '+Math.floor(productNamesArr.length/2));
+var numOfImages = prompt('Please input the number of images you want to see per round. Max number of images is ' + Math.floor(productNamesArr.length / 2));
 var maxNumberOfClicks = Number(prompt('Please input the number of rounds'));
 var randomNumberArray = [];
 var tempRandomNumberArray = [];
@@ -9,11 +8,11 @@ var imgSection = document.querySelector('#imgSection');
 var divE = document.getElementById('imgDiv');
 
 var totalClicks = 0;
+
 Product.all = [];
 Product.labelsArr = [];
 Product.clicksArr = [];
 Product.viewsArr = [];
-
 
 function Product(name) {
   this.productName = name.slice(0, name.length - 4);
@@ -23,17 +22,20 @@ function Product(name) {
   Product.all.push(this);
   Product.labelsArr.push(this.productName);
 }
+for (var i = 0; i < productNamesArr.length; i++) {
+  new Product(productNamesArr[i]);
+}
+storedData();
+
 function updateData() {
   for (let index = 0; index < Product.all.length; index++) {
     Product.clicksArr.push(Product.all[index].clicks);
     Product.viewsArr.push(Product.all[index].views);
   }
-};
-
-
-for (var i = 0; i < productNamesArr.length; i++) {
-  new Product(productNamesArr[i]);
 }
+
+
+
 generateImgTags();
 render();
 function generateImgTags() {
@@ -48,9 +50,11 @@ function generateImgTags() {
 
   }
 }
+
 function render() {
-  tempRandomNumberArray = randomNumberArray;
   randomNumberArray = randomNumber(0, productNamesArr.length - 1, numOfImages);
+  console.log(randomNumberArray);
+
   for (let index = 0; index < randomNumberArray.length; index++) {
     let imgE = document.getElementById(`img${index}`);
     imgE.src = Product.all[randomNumberArray[index]].imagePath;
@@ -110,17 +114,16 @@ function renderResults() {
   //   <canvas id="myChart" width="360" height="150"></canvas>
   // </div>
   let canvasDivE = document.createElement('div');
-  canvasDivE.setAttribute('id','myChartDiv');
+  canvasDivE.setAttribute('id', 'myChartDiv');
   imgSection.appendChild(canvasDivE);
   let canvasE = document.createElement('canvas');
   canvasDivE.appendChild(canvasE);
-  canvasE.setAttribute('id','myChart');
+  canvasE.setAttribute('id', 'myChart');
 
 
 
 
 
-  let imgE = document.createElement('img');
 
 
   renderCanvas();
@@ -133,20 +136,18 @@ function clicksCounter(index) {
 }
 
 function randomNumber(min, max, numOfImages) {
-  var randomNumberArr = [];
+
+  let currRandomNumberArr = [];
 
   var unique = 0;
   for (var index = 0; index < numOfImages; index++) {
-
-    var unicityKey = false;
-    var temp;
-
-
+    let unicityKey = false;
+    let temp;
     // eslint-disable-next-line no-constant-condition
     while (true) {
       temp = Math.floor(Math.random() * (max - min + 1)) + min;
-      for (var i = 0; i < index + 1; i++) {
-        if (randomNumberArr[i] === temp || tempRandomNumberArray[i] === temp) {
+      for (var i = 0; i < numOfImages; i++) {
+        if (currRandomNumberArr[i] === temp || tempRandomNumberArray[i] === temp) {
           unicityKey = false;
           break;
         }
@@ -160,14 +161,16 @@ function randomNumber(min, max, numOfImages) {
       }
     }
 
-    randomNumberArr.push(unique);
+    currRandomNumberArr.push(unique);
   }
-  console.log(randomNumberArr);
-  return randomNumberArr;
+  tempRandomNumberArray = currRandomNumberArr;
+
+  return currRandomNumberArr;
 }
 function renderCanvas() {
   var ctx = document.getElementById('myChart').getContext('2d');
 
+  // eslint-disable-next-line no-unused-vars
   var myChart = new Chart(ctx, {
     type: 'bar',
     data: {
@@ -210,4 +213,17 @@ function renderCanvas() {
       }
     }
   });
+
+  localStorage.setItem('objArr', JSON.stringify(Product.all));
+  localStorage.setItem('switchKey', true);
+
+}
+// function clkViwUpdater() {
+
+// }
+
+function storedData() {
+  if (localStorage.getItem('switchKey')) {
+    Product.all = JSON.parse(localStorage.getItem('objArr'));
+  }
 }

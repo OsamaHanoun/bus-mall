@@ -29,6 +29,7 @@ main{
     padding: 20px;
     margin-top: 0px;
     text-align: center;
+    min-height: 550px;
 
 }
 #imgSection{
@@ -102,6 +103,7 @@ footer{
     width: 100%;
     margin: 0;
     text-align: center;
+
 
 }
 footer p {
